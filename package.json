@@ -1,6 +1,6 @@
 {
 	"name": "two-log",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "ora and winston , just two logger, if debug",
 	"license": "MIT",
 	"repository": "chinanf-boy/two-log",
@@ -30,7 +30,6 @@
 	"keywords": ["cli-app", "cli", ""],
 	"dependencies": {
 		"meow": "^3.7.0",
-
 		"validate-switch": "^0.0.2",
 		"weoptions": "^0.0.3"
 	},
