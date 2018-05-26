@@ -1,0 +1,48 @@
+{
+	"name": "two-log",
+	"version": "0.0.0",
+	"description": "ora and winston , just two logger, if debug",
+	"license": "MIT",
+	"repository": "chinanf-boy/two-log",
+	"author": {
+		"name": "chinanf-boy",
+		"email": "865501259@qq.com",
+		"url": "llever.com"
+	},
+	"bin": "cli.js",
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "nyc ava",
+		"precommit": "lint-staged",
+		"npmUp": "npm version patch && npm publish",
+		"git": "git push && git push --tags",
+		"pub": "npm run test && npm run npmUp && npm run git"
+	},
+	"lint-staged": {
+		"*.{js,json,css,md}": [
+			"prettier --single-quote --trailing-comma es5 --write",
+			"git add"
+		]
+	},
+	"files": ["index.js", "cli.js"],
+	"keywords": ["cli-app", "cli", ""],
+	"dependencies": {
+		"meow": "^3.7.0",
+
+		"validate-switch": "^0.0.2",
+		"weoptions": "^0.0.3"
+	},
+	"devDependencies": {
+		"lint-staged": "^7.0.0",
+		"husky": "^0.14.3",
+		"prettier": "^1.12.1",
+		"ava": "^0.20.0",
+		"codecov": "^3.0.2",
+		"nyc": "^11.8.0"
+	},
+	"nyc": {
+		"reporter": ["lcov", "text"]
+	}
+}
