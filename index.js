@@ -33,7 +33,8 @@ let defaultWinston = {
 let logOpts = null; // winston options merge user options
 
 // two-log
-exports.default = (debug = false, userUse) => {
+
+const twoLog = (debug = false, userUse) => {
 	if (typeof debug !== 'boolean') {
 		throw new TypeError(`Expected a string, got ${typeof debug}`);
 	} else {
@@ -78,11 +79,6 @@ let API = {
 const _UNLOCK = function() {
 	LOCK = false;
 };
-
-exports.loggerStart = loggerStart;
-exports.loggerText = loggerText;
-exports.loggerStop = loggerStop;
-exports._UNLOCK = _UNLOCK;
 
 /**
  * @description start logger
@@ -171,3 +167,10 @@ function loggerStop(str, options = { ora: '', log: 'log' }) {
 
 	return LoggerNAME + res; // for test
 }
+
+exports.twoLog = twoLog;
+exports.loggerStart = loggerStart;
+exports.loggerText = loggerText;
+exports.loggerStop = loggerStop;
+exports._UNLOCK = _UNLOCK;
+exports.default = twoLog;
