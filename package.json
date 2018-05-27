@@ -31,6 +31,7 @@
 	"dependencies": {
 		"meow": "^3.7.0",
 		"ora": "^2.1.0",
+		"pkg-conf": "^2.1.0",
 		"validate-switch": "^0.0.2",
 		"weoptions": "^0.0.3",
 		"winston": "^2.4.2"

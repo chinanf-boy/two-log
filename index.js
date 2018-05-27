@@ -5,7 +5,11 @@ Object.defineProperty(exports, '__esModule', {
 }); // es6 export default
 const winston = require('winston');
 const Ora = require('ora');
-
+const pkgConf = require('pkg-conf');
+let pkgName = pkgConf.sync('name');
+pkgName = Object.keys(pkgName)
+	.map(k => pkgName[k])
+	.join('');
 // two-log
 let D = false; // default no debug
 let LOGGER = null; // main
@@ -21,7 +25,7 @@ let defaultWinston = {
 			colorize: true,
 		}),
 		new winston.transports.File({
-			filename: 'translate-info.log',
+			filename: `${pkgName}.log`,
 			handleExceptions: true,
 			maxsize: 52000,
 			maxFiles: 1,
