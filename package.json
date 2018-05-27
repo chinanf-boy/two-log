@@ -14,7 +14,7 @@
 		"node": ">=4"
 	},
 	"scripts": {
-		"test": "nyc ava",
+		"test": "nyc ava -v -s",
 		"precommit": "lint-staged",
 		"npmUp": "npm version patch && npm publish",
 		"git": "git push && git push --tags",
@@ -30,16 +30,18 @@
 	"keywords": ["cli-app", "cli", ""],
 	"dependencies": {
 		"meow": "^3.7.0",
+		"ora": "^2.1.0",
 		"validate-switch": "^0.0.2",
-		"weoptions": "^0.0.3"
+		"weoptions": "^0.0.3",
+		"winston": "^2.4.2"
 	},
 	"devDependencies": {
-		"lint-staged": "^7.0.0",
-		"husky": "^0.14.3",
-		"prettier": "^1.12.1",
 		"ava": "^0.20.0",
 		"codecov": "^3.0.2",
-		"nyc": "^11.8.0"
+		"husky": "^0.14.3",
+		"lint-staged": "^7.0.0",
+		"nyc": "^11.8.0",
+		"prettier": "^1.12.1"
 	},
 	"nyc": {
 		"reporter": ["lcov", "text"]
