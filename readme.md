@@ -4,43 +4,201 @@
 
 [中文](./readme.md) | ~~[english](./readme.en.md)~~
 
-## Install
+## DEMO
 
 ```
 npm i -g two-log
 ```
 
+![demo-two-log](./imgs/demo1.gif)
+![demo-two-log-D](./imgs/demo2.gif)
+
 ## Usage
 
 ```js
-const twoLog = require('two-log');
+// cli.js
+const { twoLog, loggerStart, loggerText, loggerStop } = require('two-log');
 
-twoLog('unicorns');
-//=> 'unicorns & rainbows'
+let debug = false;
+let l = twoLog(debug); // false => ora, true => winston
+
+l.start(`hello there debug:${D} , then use ${useWhat}`, {
+	ora: 'red',
+	log: 'error',
+});
+
+let t = 5000;
+
+setTimeout(() => {
+	l.text(`ora:green, log:info and ${t} i will stop `, {
+		ora: 'green',
+		log: 'info',
+	});
+}, t - 3000);
+
+setTimeout(() => {
+	l.stop(`${t}ms , ok i fail if ora `, { ora: 'fail', log: 'debug' });
+}, t);
 ```
+
+### l.start === loggerStart
+
+### l.text === loggerText
+
+### l.stop === loggerStop
+
+> logger\*\*\* 是给其他 模块使用
+
+---
 
 ## API
 
-### twoLog(input, [options])
+### twoLog(debug, userUser):log
 
-#### input
+#### debug
 
-| name: | input        |
-| ----- | ------------ |
-| Type: | `string`     |
-| Desc: | Lorem ipsum. |
+| name: | debug             |
+| ----- | ----------------- |
+| Type: | `boolean`         |
+| Desc: | debug for two log |
+
+#### userUse(api)
+
+| name:    | userUse                        |
+| -------- | ------------------------------ |
+| Type:    | `function(api)`                |
+| Default: | `undefined`                    |
+| Desc:    | reset winston options for user |
+
+##### api
+
+| name:       | api             |
+| ----------- | --------------- |
+| Type:       | `object`        |
+| Desc:       | api for user    |
+| api.log:    | log === winston |
+| api.setLog: | winston options |
+
+<details>
+
+<summary>
+api examples
+</summary>
+
+```js
+let userUse = api => {
+	let winston = api.log;
+	let wopts = {
+		level: 'info',
+	};
+	api.setLog(wopts);
+};
+
+let l = log(true, userUse);
+// winston level change
+```
+
+two-log default winston options
+
+```js
+let defaultWinston = {
+	level: 'debug',
+	transports: [
+		new winston.transports.Console({
+			datePattern: '.yyyy-MM-ddTHH-mm',
+			colorize: true,
+		}),
+		new winston.transports.File({
+			filename: `${pkg.name}.log`,
+			handleExceptions: true,
+			maxsize: 52000,
+			maxFiles: 1,
+			level: 'info',
+			colorize: true,
+		}),
+	],
+};
+```
+
+</details>
+
+---
+
+### log
+
+| name:    | log                     |
+| -------- | ----------------------- |
+| Type:    | `any`                   |
+| Desc:    | log api                 |
+| Default: | `{ start, text, stop }` |
+| Details: | `start === loggerStart` |
+| Details: | `text === loggerText`   |
+| Details: | `stop === loggerStop`   |
+
+---
+
+### loggerStart(str, options)
+
+#### str
+
+| name: | str      |
+| ----- | -------- |
+| Type: | `string` |
+| Desc: | log text |
 
 #### options
 
-##### foo
+| name:        | options                         |
+| ------------ | ------------------------------- |
+| Type:        | `any`                           |
+| Default:     | `{ ora: 'yellow', log: 'log' }` |
+| Desc:        | log text                        |
+| options.ora: | ora color                       |
+| options.log: | winston show log level          |
 
-| name:    | foo          |
-| -------- | ------------ |
-| Type:    | `boolean`    |
-| Default: | `false`      |
-| Desc:    | Lorem ipsum. |
+### loggerText(str, options)
+
+#### str
+
+| name: | str      |
+| ----- | -------- |
+| Type: | `string` |
+| Desc: | log text |
+
+#### options
+
+| name:        | options                         |
+| ------------ | ------------------------------- |
+| Type:        | `any`                           |
+| Default:     | `{ ora: 'yellow', log: 'log' }` |
+| Desc:        | log text                        |
+| options.ora: | ora color                       |
+| options.log: | winston show log level          |
+
+### loggerStop(str, options)
+
+#### str
+
+| name: | str      |
+| ----- | -------- |
+| Type: | `string` |
+| Desc: | log text |
+
+#### options
+
+| name:        | options                                                                |
+| ------------ | ---------------------------------------------------------------------- |
+| Type:        | `any`                                                                  |
+| Default:     | `{ ora: '', log: 'log' }`                                              |
+| Desc:        | log text                                                               |
+| options.ora: | ora {`fail|succeed|warn`} https://github.com/sindresorhus/ora#instance |
+| options.log: | winston show log level                                                 |
+
+---
 
 ## CLI
+
+> just Demo
 
 ```
 npm install --global two-log
@@ -49,17 +207,17 @@ npm install --global two-log
 ```
 $ two-log --help
 
-  Usage
-    two-log [input]
+	Usage
+	  $ two-log -D
 
-  Options
-    --foo  Lorem ipsum [Default: false]
+	Options
+	  -D  Debug [Default: false]
 
-  Examples
-    $ two-log
-    unicorns & rainbows
-    $ two-log ponies
-    ponies & rainbows
+	Examples
+	  $ two-log
+	  ora show
+	  $ two-log -D
+	  winston show
 ```
 
 ## License
