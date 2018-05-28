@@ -1,6 +1,6 @@
 {
 	"name": "two-log",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "ora and winston , just two logger, if debug",
 	"license": "MIT",
 	"main": "dist/two-log.js",
@@ -30,11 +30,11 @@
 			"git add"
 		]
 	},
-	"size-limit":[
+	"size-limit": [
 		{
-		"path": "dist/two-log.js",
-		"webpack":false,
-		"gzip":false
+			"path": "dist/two-log.js",
+			"webpack": false,
+			"gzip": false
 		}
 	],
 	"files": [],
