@@ -1,6 +1,6 @@
 {
 	"name": "two-log",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "ora and winston , just two logger, if debug",
 	"license": "MIT",
 	"repository": "chinanf-boy/two-log",
