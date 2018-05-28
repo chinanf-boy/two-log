@@ -5,11 +5,9 @@ Object.defineProperty(exports, '__esModule', {
 }); // es6 export default
 const winston = require('winston');
 const Ora = require('ora');
-const pkgConf = require('pkg-conf');
-let pkgName = pkgConf.sync('name');
-pkgName = Object.keys(pkgName)
-	.map(k => pkgName[k])
-	.join('');
+
+const pkgName = require('get-module-name').sync();
+
 // two-log
 let D = false; // default no debug
 let LOGGER = null; // main

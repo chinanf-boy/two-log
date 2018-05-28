@@ -26,12 +26,21 @@
 			"git add"
 		]
 	},
-	"files": ["index.js", "cli.js"],
-	"keywords": ["cli-app", "cli", ""],
+	"files": [
+		"index.js",
+		"cli.js"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"log",
+		"ora",
+		"winston"
+	],
 	"dependencies": {
+		"get-module-name": "0.0.1",
 		"meow": "^3.7.0",
 		"ora": "^2.1.0",
-		"pkg-conf": "^2.1.0",
 		"validate-switch": "^0.0.2",
 		"weoptions": "^0.0.3",
 		"winston": "^2.4.2"
@@ -39,12 +48,14 @@
 	"devDependencies": {
 		"ava": "^0.20.0",
 		"codecov": "^3.0.2",
-		"husky": "^0.14.3",
 		"lint-staged": "^7.0.0",
 		"nyc": "^11.8.0",
 		"prettier": "^1.12.1"
 	},
 	"nyc": {
-		"reporter": ["lcov", "text"]
+		"reporter": [
+			"lcov",
+			"text"
+		]
 	}
 }
