@@ -3,6 +3,8 @@
 	"version": "0.0.3",
 	"description": "ora and winston , just two logger, if debug",
 	"license": "MIT",
+	"main": "dist/two-log.js",
+	"module": "dist/two-log.m.js",
 	"repository": "chinanf-boy/two-log",
 	"author": {
 		"name": "chinanf-boy",
@@ -15,6 +17,8 @@
 	},
 	"scripts": {
 		"test": "nyc ava -v -s",
+		"prepublish": "npm run build",
+		"build": "microbundle",
 		"precommit": "lint-staged",
 		"npmUp": "npm version patch && npm publish",
 		"git": "git push && git push --tags",
@@ -26,10 +30,14 @@
 			"git add"
 		]
 	},
-	"files": [
-		"index.js",
-		"cli.js"
+	"size-limit":[
+		{
+		"path": "dist/two-log.js",
+		"webpack":false,
+		"gzip":false
+		}
 	],
+	"files": [],
 	"keywords": [
 		"cli-app",
 		"cli",
@@ -49,6 +57,7 @@
 		"ava": "^0.20.0",
 		"codecov": "^3.0.2",
 		"lint-staged": "^7.0.0",
+		"microbundle": "^0.4.4",
 		"nyc": "^11.8.0",
 		"prettier": "^1.12.1"
 	},
