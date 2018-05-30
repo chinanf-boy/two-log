@@ -186,13 +186,13 @@ let defaultWinston = {
 
 #### options
 
-| name:        | options                                                                |
-| ------------ | ---------------------------------------------------------------------- |
-| Type:        | `any`                                                                  |
-| Default:     | `{ ora: '', log: 'log' }`                                              |
-| Desc:        | log text                                                               |
-| options.ora: | ora {`fail|succeed|warn`} https://github.com/sindresorhus/ora#instance |
-| options.log: | winston show log level                                                 |
+| name:        | options                                                                  |
+| ------------ | ------------------------------------------------------------------------ |
+| Type:        | `any`                                                                    |
+| Default:     | `{ ora: '', log: 'log' }`                                                |
+| Desc:        | log text                                                                 |
+| options.ora: | ora {`fail\|succeed\|warn`} https://github.com/sindresorhus/ora#instance |
+| options.log: | winston show log level                                                   |
 
 ---
 
