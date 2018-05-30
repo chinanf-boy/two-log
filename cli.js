@@ -33,6 +33,7 @@ setTimeout(() => {
 	l.text(`ora:green, log:info and ${t} i will stop `, {
 		ora: 'green',
 	});
+	l.one('just show one time ora');
 }, t - 3000);
 
 setTimeout(() => {

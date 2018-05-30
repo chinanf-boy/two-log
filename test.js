@@ -41,7 +41,23 @@ test('ora succeed', t => {
 	);
 });
 
-test('ora fail', t => {
+test('ora start after one', t => {
+	_UNLOCK();
+	let l = log();
+	let s = 'ora';
+	let oraState = 'succeed';
+	let info = 'info';
+	t.is(l.start('ok ora starting'), s + ' start');
+	t.is(l.text('ok ora running'), s + ' text');
+	t.is(l.one('ok ora running'), true);
+
+	t.is(
+		l.stop('ok ora stopping', { ora: oraState, log: info }),
+		s + ' ' + oraState
+	);
+});
+
+test('ora before one ', t => {
 	_UNLOCK();
 
 	let l = log();
@@ -49,6 +65,8 @@ test('ora fail', t => {
 	let color = 'red';
 	let oraState = 'fail';
 	let info = 'info';
+	t.is(l.one('ok ora one running'), true);
+
 	t.is(l.start('ok ora starting', { ora: color }), s + ' start');
 
 	t.is(l.text('ok ora running'), s + ' text');
@@ -105,6 +123,7 @@ test('winston default level:debug  ', t => {
 		l.start('log  default level:debug  starting', { log: debug }),
 		s + ' debug'
 	);
+	t.is(l.one('ok one running false'), false);
 
 	t.is(l.text('log  set level:error  running', { log: e }), s + ' error');
 

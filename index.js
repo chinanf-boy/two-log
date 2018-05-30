@@ -51,20 +51,11 @@ const twoLog = (debug = false, userUse) => {
 
 	userUse && userUse(API);
 
-	function start() {
-		return loggerStart(...arguments);
-	}
-	function text() {
-		return loggerText(...arguments);
-	}
-	function stop() {
-		return loggerStop(...arguments);
-	}
-
 	return {
-		start,
-		text,
-		stop,
+		start: loggerStart,
+		text: loggerText,
+		stop: loggerStop,
+		one: oneOra,
 	};
 };
 
@@ -81,6 +72,51 @@ let API = {
 const _UNLOCK = function() {
 	LOCK = false;
 };
+
+/**
+ * @description one time ora spinner
+ * @param {string} str
+ * @param {any} options
+ * @param {string} options.color yellow
+ * @param {string} options.end succeed
+ */
+function oneOra(str, options) {
+	let { color, end } = Object.assign(
+		{ color: 'yellow', end: 'succeed' },
+		options
+	);
+
+	if (LOGGER && !D) {
+		let l = LOGGER;
+		let oldColor = l.color;
+		let oldText = l.text;
+		l.color = color;
+		l.text = str;
+
+		if (str && end) {
+			l[end](str);
+		} else {
+			l.stop();
+		}
+
+		LOGGER = Ora(oldText).start();
+		LOGGER.color = oldColor;
+	} else if (!D && !LOGGER) {
+		let l = Ora(str).start();
+		l.color = color;
+
+		if (str && end) {
+			l[end](str);
+		} else {
+			l.stop();
+		}
+
+		l = null;
+	} else {
+		return false;
+	}
+	return true;
+}
 
 /**
  * @description start logger
