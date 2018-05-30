@@ -32,7 +32,6 @@ let t = 5000;
 setTimeout(() => {
 	l.text(`ora:green, log:info and ${t} i will stop `, {
 		ora: 'green',
-		log: 'info',
 	});
 }, t - 3000);
 

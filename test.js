@@ -106,7 +106,30 @@ test('winston default level:debug  ', t => {
 		s + ' debug'
 	);
 
-	t.is(l.text('log  default level:debug  running', { log: e }), s + ' error');
+	t.is(l.text('log  set level:error  running', { log: e }), s + ' error');
+
+	t.is(
+		l.stop('log  default level:debug  stopping', { ora: oraState, log: debug }),
+		s + ' debug'
+	);
+	console.log();
+});
+
+test('winston default level: no set  ', t => {
+	_UNLOCK();
+
+	let l = log(true);
+	let s = 'log';
+	let oraState = 'success';
+	let debug = 'debug';
+	let e = 'error';
+	console.log();
+	t.is(
+		l.start('log  default level:debug  starting', { ora: 'yellow' }),
+		s + ' debug'
+	);
+
+	t.is(l.text('log  set level:error  running', { log: e }), s + ' error');
 
 	t.is(
 		l.stop('log  default level:debug  stopping', { ora: oraState, log: debug }),

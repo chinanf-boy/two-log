@@ -88,10 +88,10 @@ const _UNLOCK = function() {
  * @param {string} options.ora ora color
  * @param {string} options.log winston log level
  */
-function loggerStart(str, options = { ora: 'yellow', log: 'log' }) {
+function loggerStart(str, options) {
 	logOpts = logOpts ? logOpts : defaultWinston;
 
-	let { ora, log } = options;
+	let { ora, log } = Object.assign({ ora: 'yellow', log: 'debug' }, options);
 	let res = ' '; // for test
 
 	if (!D) {
@@ -115,11 +115,11 @@ function loggerStart(str, options = { ora: 'yellow', log: 'log' }) {
  * @param {string} options.ora ora color
  * @param {string} options.log winston log level
  */
-function loggerText(str, options = { ora: 'yellow', log: 'log' }) {
+function loggerText(str, options) {
 	if (!LOGGER) {
 		return false;
 	}
-	let { ora, log } = options;
+	let { ora, log } = Object.assign({ ora: 'yellow', log: 'debug' }, options);
 
 	let res = ' '; // for test
 
@@ -141,11 +141,11 @@ function loggerText(str, options = { ora: 'yellow', log: 'log' }) {
  * @param {string} options.ora ora {fail|succeed|warn} https://github.com/sindresorhus/ora#instance
  * @param {string} options.log winston log level
  */
-function loggerStop(str, options = { ora: '', log: 'log' }) {
+function loggerStop(str, options) {
 	if (!LOGGER) {
 		return false;
 	}
-	let { ora, log } = options;
+	let { ora, log } = Object.assign({ ora: '', log: 'debug' }, options);
 
 	let res = ' '; // for test
 
