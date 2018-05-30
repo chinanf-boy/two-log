@@ -37,20 +37,12 @@
 			"gzip": false
 		}
 	],
-	"files": [],
-	"keywords": [
-		"cli-app",
-		"cli",
-		"log",
-		"ora",
-		"winston"
-	],
+	"files": ["cli.js"],
+	"keywords": ["cli-app", "cli", "log", "ora", "winston"],
 	"dependencies": {
 		"get-module-name": "0.0.1",
 		"meow": "^3.7.0",
 		"ora": "^2.1.0",
-		"validate-switch": "^0.0.2",
-		"weoptions": "^0.0.3",
 		"winston": "^2.4.2"
 	},
 	"devDependencies": {
@@ -62,9 +54,6 @@
 		"prettier": "^1.12.1"
 	},
 	"nyc": {
-		"reporter": [
-			"lcov",
-			"text"
-		]
+		"reporter": ["lcov", "text"]
 	}
 }
