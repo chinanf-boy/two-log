@@ -34,6 +34,7 @@ setTimeout(() => {
 		ora: 'green',
 		log: 'info',
 	});
+	l.one('just show one time ora');
 }, t - 3000);
 
 setTimeout(() => {
@@ -46,6 +47,8 @@ setTimeout(() => {
 ### l.text === loggerText
 
 ### l.stop === loggerStop
+
+### l.one === oneOra
 
 > logger\*\*\* 是给其他 模块使用
 
@@ -134,6 +137,7 @@ let defaultWinston = {
 | Details: | `start === loggerStart` |
 | Details: | `text === loggerText`   |
 | Details: | `stop === loggerStop`   |
+| Details: | `one === oneOra`        |
 
 ---
 
@@ -193,6 +197,25 @@ let defaultWinston = {
 | Desc:        | log text                                                                 |
 | options.ora: | ora {`fail\|succeed\|warn`} https://github.com/sindresorhus/ora#instance |
 | options.log: | winston show log level                                                   |
+
+### oneOra(str, options)
+
+#### str
+
+| name: | str      |
+| ----- | -------- |
+| Type: | `string` |
+| Desc: | ora text |
+
+#### options
+
+| name:          | options                                                                  |
+| -------------- | ------------------------------------------------------------------------ |
+| Type:          | `any`                                                                    |
+| Default:       | `{ color: 'yellow', end: 'succeed' }`                                    |
+| Desc:          | log text                                                                 |
+| options.end:   | end {`fail\|succeed\|warn`} https://github.com/sindresorhus/ora#instance |
+| options.color: | color                                                                    |
 
 ---
 
