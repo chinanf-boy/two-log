@@ -1,6 +1,6 @@
 {
 	"name": "two-log",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "ora and winston , just two logger, if debug",
 	"license": "MIT",
 	"main": "dist/two-log.js",
@@ -37,8 +37,16 @@
 			"gzip": false
 		}
 	],
-	"files": ["cli.js"],
-	"keywords": ["cli-app", "cli", "log", "ora", "winston"],
+	"files": [
+		"cli.js"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"log",
+		"ora",
+		"winston"
+	],
 	"dependencies": {
 		"get-module-name": "0.0.1",
 		"meow": "^3.7.0",
@@ -54,6 +62,9 @@
 		"prettier": "^1.12.1"
 	},
 	"nyc": {
-		"reporter": ["lcov", "text"]
+		"reporter": [
+			"lcov",
+			"text"
+		]
 	}
 }
