@@ -210,5 +210,6 @@ exports.twoLog = twoLog;
 exports.loggerStart = loggerStart;
 exports.loggerText = loggerText;
 exports.loggerStop = loggerStop;
+exports.oneOra = oneOra;
 exports._UNLOCK = _UNLOCK;
 exports.default = twoLog;
