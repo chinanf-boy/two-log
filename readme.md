@@ -243,6 +243,10 @@ $ two-log --help
 	  winston show
 ```
 
+## use by
+
+- [node-modules-size](https://github.com/chinanf-boy/node-modules-size) show node_modules hole size
+
 ## License
 
 MIT © [chinanf-boy](http://llever.com)
