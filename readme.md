@@ -10,17 +10,16 @@
 npm i -g two-log
 ```
 
-![demo-two-log](./imgs/demo1.gif)
-![demo-two-log-D](./imgs/demo2.gif)
+<img src="./imgs/demo1.gif" width="40%">
+<img src="./imgs/demo2.gif" width="40%">
 
 ## Usage
 
 ```js
 // cli.js
-const { twoLog, loggerStart, loggerText, loggerStop } = require('two-log');
+let l = twoLog(D);
 
-let debug = false;
-let l = twoLog(debug); // false => ora, true => winston
+let useWhat = !D ? 'ora' : 'winston';
 
 l.start(`hello there debug:${D} , then use ${useWhat}`, {
 	ora: 'red',
@@ -30,12 +29,19 @@ l.start(`hello there debug:${D} , then use ${useWhat}`, {
 let t = 5000;
 
 setTimeout(() => {
-	l.text(`ora:green, log:info and ${t} i will stop `, {
+	l.text(`ora:green, log:debug and ${t} i will stop `, {
 		ora: 'green',
-		log: 'info',
 	});
+
 	l.one('just show one time ora');
 }, t - 3000);
+
+setTimeout(() => {
+	l.text(`ora:green, log:debug and ${t} only show log style `, {
+		ora: 'green',
+		only: 'log',
+	});
+}, t - 2000);
 
 setTimeout(() => {
 	l.stop(`${t}ms , ok i fail if ora `, { ora: 'fail', log: 'debug' });
@@ -152,13 +158,14 @@ let defaultWinston = {
 
 #### options
 
-| name:        | options                         |
-| ------------ | ------------------------------- |
-| Type:        | `any`                           |
-| Default:     | `{ ora: 'yellow', log: 'log' }` |
-| Desc:        | log text                        |
-| options.ora: | ora color                       |
-| options.log: | winston show log level          |
+| name:         | options                                    |
+| ------------- | ------------------------------------------ |
+| Type:         | `any`                                      |
+| Default:      | `{ ora: 'yellow', log: 'debug', only:"" }` |
+| Desc:         | log text                                   |
+| options.ora:  | ora color                                  |
+| options.log:  | winston show log level                     |
+| options.only: | only one {'ora'                            | 'log'} |
 
 ### loggerText(str, options)
 
@@ -171,13 +178,14 @@ let defaultWinston = {
 
 #### options
 
-| name:        | options                         |
-| ------------ | ------------------------------- |
-| Type:        | `any`                           |
-| Default:     | `{ ora: 'yellow', log: 'log' }` |
-| Desc:        | log text                        |
-| options.ora: | ora color                       |
-| options.log: | winston show log level          |
+| name:         | options                                    |
+| ------------- | ------------------------------------------ |
+| Type:         | `any`                                      |
+| Default:      | `{ ora: 'yellow', log: 'debug', only:"" }` |
+| Desc:         | log text                                   |
+| options.ora:  | ora color                                  |
+| options.log:  | winston show log level                     |
+| options.only: | only one {'ora'                            | 'log'} |
 
 ### loggerStop(str, options)
 
@@ -190,13 +198,14 @@ let defaultWinston = {
 
 #### options
 
-| name:        | options                                                                  |
-| ------------ | ------------------------------------------------------------------------ |
-| Type:        | `any`                                                                    |
-| Default:     | `{ ora: '', log: 'log' }`                                                |
-| Desc:        | log text                                                                 |
-| options.ora: | ora {`fail\|succeed\|warn`} https://github.com/sindresorhus/ora#instance |
-| options.log: | winston show log level                                                   |
+| name:         | options                                                                  |
+| ------------- | ------------------------------------------------------------------------ |
+| Type:         | `any`                                                                    |
+| Default:      | `{ ora: '', log: 'debug', only:"" }`                                     |
+| Desc:         | log text                                                                 |
+| options.ora:  | ora {`fail\|succeed\|warn`} https://github.com/sindresorhus/ora#instance |
+| options.log:  | winston show log level                                                   |
+| options.only: | only one {'ora'                                                          | 'log'} |
 
 ### oneOra(str, options)
 

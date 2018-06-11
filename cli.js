@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 const meow = require('meow');
-const { twoLog } = require('.');
+const { twoLog } = require('./index');
 
 const cli = meow(`
 	Usage
@@ -16,7 +16,7 @@ const cli = meow(`
 	  $ two-log -D
 	  winston show
 `);
-let D = cli.flags['D'];
+let D = cli.flags['D'] ? true : false;
 
 let l = twoLog(D);
 
@@ -30,11 +30,19 @@ l.start(`hello there debug:${D} , then use ${useWhat}`, {
 let t = 5000;
 
 setTimeout(() => {
-	l.text(`ora:green, log:info and ${t} i will stop `, {
+	l.text(`ora:green, log:debug and ${t} i will stop `, {
 		ora: 'green',
 	});
+
 	l.one('just show one time ora');
 }, t - 3000);
+
+setTimeout(() => {
+	l.text(`ora:green, log:debug and ${t} only show log style `, {
+		ora: 'green',
+		only: 'log',
+	});
+}, t - 2000);
 
 setTimeout(() => {
 	l.stop(`${t}ms , ok i fail if ora `, { ora: 'fail', log: 'debug' });

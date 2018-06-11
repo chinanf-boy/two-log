@@ -123,19 +123,23 @@ function oneOra(str, options) {
  * @param {string} str
  * @param {string} options.ora ora color
  * @param {string} options.log winston log level
+ * @param {string} options.only only one {ora|log}
  */
 function loggerStart(str, options) {
 	logOpts = logOpts ? logOpts : defaultWinston;
 
-	let { ora, log } = Object.assign({ ora: 'yellow', log: 'debug' }, options);
+	let { ora, log, only } = Object.assign(
+		{ ora: 'yellow', log: 'debug' },
+		options
+	);
 	let res = ' '; // for test
 
-	if (!D) {
+	if (!D && (!only || only == 'ora')) {
 		LOGGER = Ora(str).start();
 		LOGGER.color = ora;
 
 		res += 'start'; // for test
-	} else {
+	} else if (D && (!only || only == 'log')) {
 		LOGGER = new winston.Logger(logOpts);
 		LOGGER[log](str);
 
@@ -150,21 +154,25 @@ function loggerStart(str, options) {
  * @param {String} str
  * @param {string} options.ora ora color
  * @param {string} options.log winston log level
+ * @param {string} options.only only one {ora|log}
  */
 function loggerText(str, options) {
 	if (!LOGGER) {
 		return false;
 	}
-	let { ora, log } = Object.assign({ ora: 'yellow', log: 'debug' }, options);
+	let { ora, log, only } = Object.assign(
+		{ ora: 'yellow', log: 'debug' },
+		options
+	);
 
 	let res = ' '; // for test
 
-	if (!D) {
+	if (!D && (!only || only == 'ora')) {
 		LOGGER.text = str;
 		LOGGER.color = ora;
 
 		res += 'text'; // for test
-	} else {
+	} else if (D && (!only || only == 'log')) {
 		LOGGER[log](str);
 		res += log; // for test
 	}
@@ -176,16 +184,17 @@ function loggerText(str, options) {
  * @param {string} str
  * @param {string} options.ora ora {fail|succeed|warn} https://github.com/sindresorhus/ora#instance
  * @param {string} options.log winston log level
+ * @param {string} options.only only one {ora|log}
  */
 function loggerStop(str, options) {
 	if (!LOGGER) {
 		return false;
 	}
-	let { ora, log } = Object.assign({ ora: '', log: 'debug' }, options);
+	let { ora, log, only } = Object.assign({ ora: '', log: 'debug' }, options);
 
 	let res = ' '; // for test
 
-	if (!D) {
+	if (!D && (!only || only == 'ora')) {
 		if (ora && str) {
 			LOGGER[ora](str);
 			res += ora; // for test
@@ -193,7 +202,7 @@ function loggerStop(str, options) {
 			LOGGER.stop();
 			res += 'stop'; // for test
 		}
-	} else {
+	} else if (D && (!only || only == 'log')) {
 		if (str) {
 			LOGGER[log](str);
 		}
