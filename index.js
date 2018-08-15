@@ -215,6 +215,7 @@ function loggerStop(str, options) {
 	return LoggerNAME + res; // for test
 }
 
+exports = module.exports = twoLog;
 exports.twoLog = twoLog;
 exports.loggerStart = loggerStart;
 exports.loggerText = loggerText;
