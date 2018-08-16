@@ -256,6 +256,7 @@ $ two-log --help
 ## use by
 
 - [node-modules-size](https://github.com/chinanf-boy/node-modules-size) show node_modules hole size
+- [doc-templite](https://github.com/chinanf-boy/doc-templite) multi-md-file with templite tool
 
 ## License
 
