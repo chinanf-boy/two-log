@@ -1,8 +1,6 @@
 # two-log [![Build Status](https://travis-ci.org/chinanf-boy/two-log.svg?branch=master)](https://travis-ci.org/chinanf-boy/two-log) [![codecov](https://codecov.io/gh/chinanf-boy/two-log/badge.svg?branch=master)](https://codecov.io/gh/chinanf-boy/two-log?branch=master) [![explain](http://llever.com/explain.svg)](https://github.com/chinanf-boy/two-log-explain)
 
-> ora and winston , just two logger, if debug
-
-[中文](./readme.md) | ~~[english](./readme.en.md)~~
+> switch `ora` and `winston` , if `debug == true` log => `winston`, else log => `ora`
 
 ## DEMO
 
@@ -17,6 +15,9 @@ npm i -g two-log
 
 ```js
 // cli.js
+const twoLog = require('two-log');
+let D = cli.flags['D'] ? true : false;
+
 let l = twoLog(D);
 
 let useWhat = !D ? 'ora' : 'winston';
@@ -56,7 +57,7 @@ setTimeout(() => {
 
 ### l.one === oneOra
 
-> logger\*\*\* 是给其他 模块使用
+> logger`***` use for other module without `l = twoLog(D)` init
 
 ---
 
@@ -165,7 +166,7 @@ let defaultWinston = {
 | Desc:         | log text                                   |
 | options.ora:  | ora color                                  |
 | options.log:  | winston show log level                     |
-| options.only: | only one {'ora'                            | 'log'} |
+| options.only: | only one {'ora' \| 'log'} can use          |
 
 ### loggerText(str, options)
 
@@ -185,7 +186,7 @@ let defaultWinston = {
 | Desc:         | log text                                   |
 | options.ora:  | ora color                                  |
 | options.log:  | winston show log level                     |
-| options.only: | only one {'ora'                            | 'log'} |
+| options.only: | only one {'ora' \| 'log'} can use          |
 
 ### loggerStop(str, options)
 
@@ -205,7 +206,7 @@ let defaultWinston = {
 | Desc:         | log text                                                                 |
 | options.ora:  | ora {`fail\|succeed\|warn`} https://github.com/sindresorhus/ora#instance |
 | options.log:  | winston show log level                                                   |
-| options.only: | only one {'ora'                                                          | 'log'} |
+| options.only: | only one {'ora' \| 'log'} can use                                        |
 
 ### oneOra(str, options)
 
