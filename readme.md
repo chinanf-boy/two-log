@@ -8,8 +8,10 @@
 npm i -g two-log
 ```
 
+<p>
 <img src="./imgs/demo1.gif" width="40%">
 <img src="./imgs/demo2.gif" width="40%">
+</p>
 
 ## Usage
 
