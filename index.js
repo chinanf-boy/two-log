@@ -31,7 +31,7 @@ let LOGGER = null; // main
 let LOCK = false; // only one set debug
 let LoggerNAME = 'ora'; // for test
 const forText = (msgs = []) => {
-	return mags.join('');
+	return msgs.join('');
 };
 // log
 let defaultWinston = {
@@ -157,7 +157,7 @@ function loggerStart(str, options) {
 		LOGGER = new winston.Logger(logOpts);
 		LOGGER[log](str);
 
-		res = forText([res, 'log']);
+		res = forText([res, log]);
 	}
 
 	return forText([LoggerNAME, res]);
