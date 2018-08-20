@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', {
 	value: true,
 }); // es6 export default
 const winston = require('winston');
-const Ora = require('ora');
+const Ora = require('ora-min');
 const pkgName = require('get-module-name').sync();
 
 const onlyWhat = (only, str) => {
