@@ -16,18 +16,27 @@
 		"node": ">=4"
 	},
 	"scripts": {
-		"test": "nyc ava -v -s",
-		"prepublish": "npm run build",
+		"test": "npm run build && nyc ava -v -s",
 		"build": "microbundle",
 		"precommit": "lint-staged",
 		"npmUp": "npm version patch && npm publish",
 		"git": "git push && git push --tags",
 		"pub": "npm run test && npm run npmUp && npm run git"
 	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
 	"lint-staged": {
-		"*.{js,json,css,md}": [
-			"prettier --single-quote --trailing-comma es5 --write",
-			"git add"
+		"linters": {
+			"*.{js,json,css,md}": [
+				"prettier --single-quote --trailing-comma es5 --write",
+				"git add"
+			]
+		},
+		"ignore": [
+			"**/dist/*.js"
 		]
 	},
 	"size-limit": [
@@ -57,6 +66,7 @@
 	"devDependencies": {
 		"ava": "^0.20.0",
 		"codecov": "^3.0.2",
+		"husky": "^1.0.0-rc.13",
 		"lint-staged": "^7.0.0",
 		"microbundle": "^0.4.4",
 		"nyc": "^11.8.0",
