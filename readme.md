@@ -2,16 +2,24 @@
 
 > switch `ora` and `winston` , if `debug == true` log => `winston`, else log => `ora`
 
-## DEMO
+## install
 
 ```
-npm i -g two-log
+npm i two-log
+```
+
+## cli demo
+
+```
+npm i -g two-log-cli
 ```
 
 <p>
 <img src="./imgs/demo1.gif" width="40%">
 <img src="./imgs/demo2.gif" width="40%">
 </p>
+
+- [two-log-cli](https://github.com/chinanf-boy/two-log-cli)
 
 ## Usage
 
@@ -230,30 +238,6 @@ let defaultWinston = {
 | options.color: | color                                                                    |
 
 ---
-
-## CLI
-
-> just Demo
-
-```
-npm install --global two-log
-```
-
-```
-$ two-log --help
-
-	Usage
-	  $ two-log -D
-
-	Options
-	  -D  Debug [Default: false]
-
-	Examples
-	  $ two-log
-	  ora show
-	  $ two-log -D
-	  winston show
-```
 
 ## use by
 
